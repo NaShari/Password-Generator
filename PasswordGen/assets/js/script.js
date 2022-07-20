@@ -1,51 +1,51 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
+var lowers = "abcdefghijklmnopqrstuvwxyz";
+var Uppers = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+var specials = "!@#$%^&*"
+var numbers = "1234567890"
 // Write password to the #password input
 function writePassword() {
   var password = generatePassword();
-  var passwordText = document.querySelector("#password"); 
+  var passwordText = document.querySelector("#password");
+  passwordText.value =  "";
   passwordText.value = password; 
 }
-
 function isNumeric(str) {
   if (typeof str != "string") return false // we only process strings!  
   return !isNaN(str) && // use type coercion to parse the _entirety_ of the string (`parseFloat` alone does not do this)...
     !isNaN(parseFloat(str)) // ...and ensure strings of whitespace fail
 }
-
-function charecterInclusion() {
-  var lowerLetters = "abcdefghijklmnopqrstuvwxyz";
-  var caps = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-  var specialCharecter = "!@#$%^&*"
-
-}
- 
 function generatePassword() {
   var password = "";
-  var passwordLength = prompt("how long is the password")
-  var lowerLetters = prompt("would you like letters");
-  var caps = prompt("do you want capital letters");
-  var number = "Do you want numbers in your password";
-  var specialCharecter = prompt("do you want special charecters")
-
+  var passwordLength = prompt("How long is the password")
+  var Uppercase = confirm("Would you like Uppercase letters");
+  var lowercase = confirm("Would you like lowercase letters");
+  var number = confirm("Do you want numbers in your password");
+  var specialCharecter = confirm("do you want special charecters")
+  var charecterSet = "";
   // check if number 
   console.log(isNumeric(passwordLength))
   // check if passwordlengh >= 8or <=128
   if (passwordLength <= "128") {
-    return true
+    console.log(passwordLength)
   }
-  if (lowerLetters = "yes") {
-    
-   }
+  if (Uppercase) {
+    charecterSet += Uppers
+  }
+  if (lowercase = "yes") {
+    charecterSet +=lowers 
+  }
   if (specialCharecter = "yes") {
-
+    charecterSet += specials 
+  } 
+  if (number) {
+    charecterSet += numbers 
   }
-  if (caps = "yes") {
-    return generateRandomLetter()
+  for(let i = 0; i<passwordLength; i++ ) {
+    password += charecterSet[Math.floor(Math.random()* charecterSet.length)]
   }
-  if (number = "yes") return Math.floor(Math.random() * 100);
-  console.log(passwordLength)
+  
   return password;
 }
 
